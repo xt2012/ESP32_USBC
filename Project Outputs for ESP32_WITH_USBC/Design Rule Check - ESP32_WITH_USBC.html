@@ -1,0 +1,437 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD25\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11/08/2025</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">16:07:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Public\Documents\Altium\ESP32_WITH_USBC\ESP32_WITH_USBC.PcbDoc" class="file"><acronym title="C:\Users\Public\Documents\Altium\ESP32_WITH_USBC\ESP32_WITH_USBC.PcbDoc">C:\Users\Public\Documents\Altium\ESP32_WITH_USBC\ESP32_WITH_USBC.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Waived Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">4</td></tr>
+</table>
+</td>
+</table><a name="ID425U1G1SKKKJPUVD15FK5Y45ELYQK0Q4ZEXWURJ1T50QDHJFUMMN"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDABHOP0MVR2J2DH5ZE3WOCM1SUEC4RPQ103UUEBJECOZ44KZHS0DL">Clearance Constraint (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDB1LQ2EPH3GJVBGQ43ZZ5W2LSOOCM02BQIPC3IAKU2ZT0WW4LD4FF">Clearance Constraint (Gap=6mil) ((WithinRoom('FTDI') OR WithinRoom('USBC2') OR WithinRoom('USBC1')) And (Layer = 'L1')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYQQGHUFGDNGZHAD5RG2A041ENEST1YV1JOE3ETJTLZXTUXIMFBDL">Clearance Constraint (Gap=8mil) (InDifferentialPairClass('DIFF90')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDE3SAY5DO5YEYCAIF05VRC5UPGHZNJLYLGWHOYSC1MVEJZKZB52SG">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGFU3OSJ3RYPYFZDVMOPCQXSTWHAXYPCRMAUPPWKCX1IXLGVLWIHO">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDROBXTJUTPF31BT5JPZ4V5Z5VRDAM1NXTKOO0UCCALZ0WSAZAAOSI">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFY0VO2UIQD3MN4H01ETA1RGGIIFX0KUFQHCLSHL0LJVPN5M1KZPH">Width Constraint (Min=6mil) (Max=100mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDN4BY2JKYZVFRBU1BHZRQVMQEDFJ4UJ2D5WS2RGMM1G1ZD24PR25K">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDO4KUTICDNCTAOBSU0AWRLTBDBCJBHIU0ANY0LNNDEOZGWYCCEKIM">Routing Layers(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMR2NZG2HKCW0EGFQKQVMAFD4TEH1EUS4RHR45NAVRNLCOBICLY">Routing Via (MinHoleWidth=12mil) (MaxHoleWidth=12mil) (PreferredHoleWidth=12mil) (MinWidth=24mil) (MaxWidth=24mil) (PreferedWidth=24mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTWZQXLYI3X3050JRN03RPSFOGWDKD0CPXCTYUK5JKW531XZBTSJ">Differential Pairs Uncoupled Length using the Gap Constraints (Min=8mil) (Max=8.1mil) (Prefered=8mil)  and Width Constraints (Min=5.1mil) (Max=6.23mil) (Prefered=6.03mil) (InDifferentialPairClass('DIFF90'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPM0TEM5PABRCETCKYJA0EWFHIELE5HNSGTZ0GHS2ZA3PI5XQ5BO">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=20mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAD4RRQQMAAX3E4YOWONES31ZUIGL11DWLPBUSVJL4V20HGMHH0L">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWY40Q210H2WVK354SG13RZMXLOJ0AJH0KGM3OVPZASMRCAHUI01D">Pads and Vias to follow the Drill pairs settings</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBZIO5KFHK4JQDWIPVEK3ILTRWZPUDC4QYR5G0O4IZX3B0DS5IXD">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDY3ZUFEHCU5DSKLAJPL155PSXYH05ATV1HWCZDUKEPIZOJ2KK4KDL">Minimum Solder Mask Sliver (Gap=3.15mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYR4I0NV4FV3EHUBOX3JU0RF3FERGKMVQKBDLJIHJDH5X4G33NWIL">Silk To Solder Mask (Clearance=6mil) (IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJDA221JBKK41O540FJJZN1XDEDEQ3KIAFSLP4CGTA3TFNIMY0T4O">Silk to Silk (Clearance=6mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQKPVKMWGI1KYGMMZDEITHCW4DKQQWKUKW42PCAERWCSHMKOSTKGK">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNOLXO41MWR5TIK0M52XHDISSHNH421U1QJJARJLHX0ZPPDGRFPFG">Room USBC2 (Bounding Region = (18267.158mil, 18780.787mil, 18422.158mil, 19070.787mil) (False)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID5H5JCG1FHY1TNKPXHE223CWWTFHMGZJQDOSX2RJEIO4AMV4YJWWJ">Room USBC1 (Bounding Region = (18295mil, 19335mil, 18400mil, 19625mil) (False)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3D0V5M0T3TG4N4GHX1PG0GV4YODQXA3Z2TRNZ0O3XFBVT4O4TYSL">Room FTDI (Bounding Region = (18680mil, 19352.564mil, 18960mil, 19590mil) (False)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYBSUOXCEJ3XCEEKXK1SMRCTGTMHZUPQUPVQOXICAB12EDRNGY54K">Component Clearance Constraint ( Horizontal Gap = 0mil, Vertical Gap = 0mil ) (InComponent('R23')),(InComponent('R25')) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3GSY2BQGEAWLDQXDFCK0I22ZNMVB3BP5WFZU2SC5KL0I1P32RSWE">Component Clearance Constraint ( Horizontal Gap = 10mil, Vertical Gap = 10mil ) (All),(All) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDX1J0RFEFO5PBD2J1HYYQDE3FDDRNDPT42DL13NLMCFKAS2XXILAE">Component Clearance Constraint ( Horizontal Gap = 0mil, Vertical Gap = 0mil ) (InComponent('R1')),(InComponent('R4')) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDB03DUM3RPNVNMBCCWQURYMT1ACV2RVSIB4G113JUSGNT3TJF2T3O">Component Clearance Constraint ( Horizontal Gap = 0mil, Vertical Gap = 0mil ) (InComponent('R24')),(InComponent('R26')) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDWPUJQGLPX3QFCSWW0IG3IDJOJT3HUOVXJDFKNK4F5XIYBVNYIBH">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Waived Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFWWQ0Y1WHGYJJ3EM3LOMZRXOCNVTVGEYFLYOVFHBDD4B2R3CSXYN">Differential Pairs Uncoupled Length using the Gap Constraints (Min=8mil) (Max=8.1mil) (Prefered=8mil)  and Width Constraints (Min=5.1mil) (Max=6.23mil) (Prefered=6.03mil) (InDifferentialPairClass('DIFF90'))</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3JIEDKZF0IRGD5YW41Z0MWDKFCTFBFDNRAVLNCJKCR2NCL0G2NYC">Component Clearance Constraint ( Horizontal Gap = 0mil, Vertical Gap = 0mil ) (InComponent('R23')),(InComponent('R25')) </a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTMVQSX2AC5EGC0NFOCJLJ54XSJHB5EA2VBVWBLJO0NBPAOW4GRWF">Component Clearance Constraint ( Horizontal Gap = 0mil, Vertical Gap = 0mil ) (InComponent('R1')),(InComponent('R4')) </a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID40EX52PA24E3K1YYEJOYJJGG5M4A3TNZ0ESD30NJAZL0AGXDSYHO">Component Clearance Constraint ( Horizontal Gap = 0mil, Vertical Gap = 0mil ) (InComponent('R24')),(InComponent('R26')) </a></td>
+<td class="column2">1</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">4</td>
+</tr>
+</table><br><a name="IDBQSTLLASHL0LNZCRZM3YFWPQMKRCNQMNG0CIE0OOPCDQZ4NUEEOI"><h2>Rule Violations</h2></a><a name="IDGZ4DV52VARK2DYRTADPJMHHHCDL2RUNGTY2FC3HNKZR3PQLXYCQI"><h2>Waived Violations</h2></a><a name="IDFWWQ0Y1WHGYJJ3EM3LOMZRXOCNVTVGEYFLYOVFHBDD4B2R3CSXYN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Differential Pairs Uncoupled Length using the Gap Constraints (Min=8mil) (Max=8.1mil) (Prefered=8mil)  and Width Constraints (Min=5.1mil) (Max=6.23mil) (Prefered=6.03mil) (InDifferentialPairClass('DIFF90'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\ESP32_WITH_USBC\ESP32_WITH_USBC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18311.982mil|Location2.X=18626.01mil|Location1.Y=19401.172mil|Location2.Y=19520.223mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\ESP32_WITH_USBC\ESP32_WITH_USBC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18311.982mil|Location2.X=18626.01mil|Location1.Y=19401.172mil|Location2.Y=19520.223mil|Absolute=True">Differential Pairs Routing: Between Net CON1_USB_P And Net CON1_USB_N [Uncoupled Length = 511.76mil], [Maximum Uncoupled Length = 500mil]</acronym></a><br>Waived by HENRIQUE BERNARDES at 11/08/2025 14:32:46<br>Ignorar erro de "uncoupled length" maior que o máximo definido.</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID3JIEDKZF0IRGD5YW41Z0MWDKFCTFBFDNRAVLNCJKCR2NCL0G2NYC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Component Clearance Constraint ( Horizontal Gap = 0mil, Vertical Gap = 0mil ) (InComponent('R23')),(InComponent('R25')) </th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\ESP32_WITH_USBC\ESP32_WITH_USBC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20097.277mil|Location2.X=20098.277mil|Location1.Y=19219.864mil|Location2.Y=19220.864mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\ESP32_WITH_USBC\ESP32_WITH_USBC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20097.277mil|Location2.X=20098.277mil|Location1.Y=19219.864mil|Location2.Y=19220.864mil|Absolute=True">Component Clearance Constraint: (Collision) Between SMT Small Component R23-0R (2013mil,513mil) on L1 And SMT Small Component R25-0R (1978.984mil,513mil) on L1 </acronym></a><br>Waived by HENRIQUE BERNARDES at 11/08/2025 15:00:09<br>Ignorar erro de colisão entre resistores.</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDTMVQSX2AC5EGC0NFOCJLJ54XSJHB5EA2VBVWBLJO0NBPAOW4GRWF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Component Clearance Constraint ( Horizontal Gap = 0mil, Vertical Gap = 0mil ) (InComponent('R1')),(InComponent('R4')) </th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\ESP32_WITH_USBC\ESP32_WITH_USBC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18820.707mil|Location2.X=18821.707mil|Location1.Y=19182.136mil|Location2.Y=19183.136mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\ESP32_WITH_USBC\ESP32_WITH_USBC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18820.707mil|Location2.X=18821.707mil|Location1.Y=19182.136mil|Location2.Y=19183.136mil|Absolute=True">Component Clearance Constraint: (Collision) Between SMT Small Component R1-0R (705.984mil,490mil) on L1 And SMT Small Component R4-0R (740mil,490mil) on L1 </acronym></a><br>Waived by HENRIQUE BERNARDES at 11/08/2025 15:00:30<br>Ignorar erro de colisão entre resistores.</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID40EX52PA24E3K1YYEJOYJJGG5M4A3TNZ0ESD30NJAZL0AGXDSYHO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Component Clearance Constraint ( Horizontal Gap = 0mil, Vertical Gap = 0mil ) (InComponent('R24')),(InComponent('R26')) </th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\ESP32_WITH_USBC\ESP32_WITH_USBC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20097.277mil|Location2.X=20098.277mil|Location1.Y=19151.864mil|Location2.Y=19152.864mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\ESP32_WITH_USBC\ESP32_WITH_USBC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20097.277mil|Location2.X=20098.277mil|Location1.Y=19151.864mil|Location2.Y=19152.864mil|Absolute=True">Component Clearance Constraint: (Collision) Between SMT Small Component R24-0R (2013mil,445mil) on L1 And SMT Small Component R26-0R (1978.984mil,445mil) on L1 </acronym></a><br>Waived by HENRIQUE BERNARDES at 11/08/2025 15:00:23<br>Ignorar erro de colisão entre resistores.</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
